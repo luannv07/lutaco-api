@@ -3,6 +3,8 @@ package vn.id.luannv.lutaco.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Table(name = "users")
 @Entity
 @Builder
@@ -29,11 +31,23 @@ public class User extends BaseEntity {
     String address;
     @Column(name = "avatar_link")
     String avatarLink;
-    @Column(name = "languageCd", columnDefinition = "tinyint default 1")
+    @Column(name = "languageCd")
     byte languageCd;
-    @Column(name = "statusCd", columnDefinition = "tinyint default 1")
+    @Column(name = "statusCd")
     byte statusCd; // decision that user can access their account, or not
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id")
     Role role;
+
+    @PreUpdate
+    void preUpdate() {
+        if (statusCd == 0 && this.getDeletedAt() != null) {
+            this.setDeletedAt(LocalDate.now());
+        }
+    }
+    @PrePersist
+    void prePersist() {
+        this.statusCd = 1;
+        this.languageCd = 1;
+    }
 }

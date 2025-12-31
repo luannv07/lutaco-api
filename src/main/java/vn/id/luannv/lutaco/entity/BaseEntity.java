@@ -12,6 +12,7 @@ import java.time.LocalDate;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@MappedSuperclass
 public abstract class BaseEntity implements Serializable {
     @Column(name = "created_at")
     @CreationTimestamp
@@ -22,6 +23,5 @@ public abstract class BaseEntity implements Serializable {
     LocalDate updatedAt;
 
     @Column(name = "deleted_at", columnDefinition = "datetime default null")
-    @UpdateTimestamp
     LocalDate deletedAt; // after set statusCd = 0 (disabled), then use @Scheduled to hard delete after x days
 }

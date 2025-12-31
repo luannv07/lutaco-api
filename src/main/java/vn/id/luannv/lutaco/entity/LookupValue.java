@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(
         name = "lookup_values",
@@ -30,4 +32,11 @@ public class LookupValue extends BaseEntity{
     byte statusFlg;
     @Column(name = "description")
     String description;
+
+    @PreUpdate
+    void preUpdate() {
+        if (statusFlg == 0 && this.getDeletedAt() != null) {
+            this.setDeletedAt(LocalDate.now());
+        }
+    }
 }

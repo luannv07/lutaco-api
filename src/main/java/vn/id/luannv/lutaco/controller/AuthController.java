@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import vn.id.luannv.lutaco.dto.request.LoginRequest;
+import vn.id.luannv.lutaco.dto.request.UserCreationRequest;
+import vn.id.luannv.lutaco.dto.response.ApiResponse;
 import vn.id.luannv.lutaco.dto.response.UserResponse;
 import vn.id.luannv.lutaco.service.AuthService;
 
@@ -24,10 +26,20 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest, BindingResult bindingResult) {
         UserResponse userResponse = authService.login(loginRequest, bindingResult);
-        return ResponseEntity.ok(userResponse);
+        return ResponseEntity.ok(ApiResponse.builder()
+                .success(true)
+                .message("Login Successful")
+                .data(userResponse)
+                .build());
     }
-    @GetMapping("/public")
-    public ResponseEntity<?> getPublic() {
-        return ResponseEntity.ok().body("Hello");
+
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@Valid @RequestBody UserCreationRequest userCreationRequest, BindingResult bindingResult) {
+        UserResponse userResponse = authService.register(userCreationRequest, bindingResult);
+        return ResponseEntity.ok(ApiResponse.builder()
+                .success(true)
+                .message("Register Successful")
+                .data(userResponse)
+                .build());
     }
 }

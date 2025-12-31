@@ -7,6 +7,7 @@ import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import vn.id.luannv.lutaco.entity.Role;
 import vn.id.luannv.lutaco.enumerate.RoleEnum;
@@ -20,6 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @Slf4j
+@Order(1)
 public class RoleInitializer implements CommandLineRunner {
     RoleRepository roleRepository;
 

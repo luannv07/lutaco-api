@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
-public class ApiException {
+public class ApiException extends RuntimeException {
     ErrorCode errorCode;
     List<ErrorField> errorFields;
 
