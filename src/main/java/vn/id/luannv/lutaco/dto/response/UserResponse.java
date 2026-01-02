@@ -22,7 +22,7 @@ public class UserResponse {
     byte languageCd;//lay tu lookup value 0|1: vi|en
     byte statusCd;// lay tu lookup value
     String roleName;
-    LocalDate createdAt;
-    LocalDate updatedAt;
+    LocalDate createdDate;
+    LocalDate updatedDate;
     LocalDate deletedAt;
 }
