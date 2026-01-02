@@ -35,7 +35,7 @@ public class UserController {
             @RequestParam(name = "name", required = false) String name 
     ) {
         int size = 10;
-        Sort sort = Sort.by("createdAt").descending();
+        Sort sort = Sort.by("createdDate").descending();
         int pageIndex = (page < 1) ? 0 : page - 1;
         Pageable pageable = PageRequest.of(pageIndex, size, sort);
 

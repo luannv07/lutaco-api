@@ -54,9 +54,6 @@ public class UserServiceImpl implements UserService {
         }
 
 
-        user.setUpdatedAt(LocalDate.now());
-
-
         return userMapper.toResponse(userRepository.save(user));
     }
 
@@ -98,7 +95,6 @@ public class UserServiceImpl implements UserService {
                     .orElseThrow(() -> new ApiException(ErrorCode.INVALID_PARAM));
             user.setRole(role);
         }
-        user.setUpdatedAt(LocalDate.now());
 
         return userMapper.toResponse(userRepository.save(user));
     }
