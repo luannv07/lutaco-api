@@ -27,7 +27,7 @@ public enum ErrorCode {
     PASSWORD_INVALID(400, "Mật khẩu không hợp lệ."),
     EMAIL_INVALID(400, "Địa chỉ email không hợp lệ."),
     EMAIL_EXISTED(400, "Địa chỉ email đã tồn tại."),
-    USER_LOCKED(400,"Không thể sử dụng tài khoản")  ;
+    USER_LOCKED(400,"Không thể sử dụng tài khoản"), LOOKUP_VALUE_NOT_FOUND(400, "Không tìm thấy tham số hệ thống");
 
     Integer status;
     String message;
